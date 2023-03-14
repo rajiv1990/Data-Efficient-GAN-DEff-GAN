@@ -1,0 +1,58 @@
+#workspace:
+not_cuda: 0 #help='disables cuda', default=0)
+manualSeed: 0 #help='manual seed')
+
+#stage hyper parameters:
+nfc: 64 #help='number of filters per conv layer', default=64)
+ker_size: 3 #help='kernel size',default=3)
+num_layer: 3 #help='number of layers per stage',default=3)
+padd_size: 0 #help='net pad size',default=0)
+
+#pyramid parameters:
+nc_im: 3 #help='image # channels',default=3)
+noise_amp: 0.5 #help='additive noise cont weight',default=0.1)
+min_size: 32 #help='image minimal size at the coarser scale',default=25)
+max_size: 128 #help='image minimal size at the coarser scale', default=250)
+train_depth: 3 # help='how many layers are trained if growing. Suggested 2+', default=3)
+start_scale: 0 # help='at which stage to start training', default=0)
+
+#optimization hyper parameters:
+niter: 2000 # default=2000, help='number of epochs to train per scale')
+gamma: 0.1 #help='scheduler gamma',default=0.1)
+lr_g: 0.00025 # default=0.0005, help='learning rate, default=0.0005')
+lr_d: 0.0005 # default=0.0005, help='learning rate, default=0.0005')
+beta1: 0.5 # default=0.5, help='beta1 for adam. default=0.5')
+Gsteps: 3 # help='Generator inner steps',default=3)
+Dsteps: 3 # help='Discriminator inner steps',default=3)
+lambda_grad: 0.1 # help='gradient penalty weight',default=0.1)
+lambda_vgg: 10 # help='vgg perceptual loss weight',default=1)
+alpha: 10 # help='reconstruction loss weight',default=10)
+activation: lrelu #default='lrelu', help="activation function {lrelu, prelu, elu, selu}")
+lrelu_alpha: 0.05 # help='alpha for leaky relu', default=0.05)
+batch_norm: 1 #help='use batch norm in generator', default=0)
+use_cutmix: True
+
+# custom
+num_imgs: 5 # 
+naive_img: None #'naive input image  (harmonization or editing)=""
+gpu: 0 #help='which GPU to use=0
+train_mode: 'generation' # generation=['generation', 'retarget', 'harmonization', 'editing', 'animation'],
+lr_scale: 0.1 #help='scaling of learning rate for lower stages=0.1)
+train_stages: 8 #help='how many stages to use for training=6)
+fine_tune: 0 #'whether to fine tune on a given image=0)
+model_dir: None #'model to be used for fine tuning (harmonization or editing)= functions.post_config(opt)
+batch_size: 64
+batch_size_train: batch_size
+batch_size_test: 16
+curr_depth: 0
+w_amp: 0.9
+w_noise: 0.01
+train_init: 3
+num_samples: num_imgs*10
+lambda_sim: 1.0
+temp_sim: 0.05
+lambda_clip: 10.0
+#device: 'cpu'
+device: 'cuda:0'
+w_amp: 0.9
+dir_name: 'test'
