@@ -176,14 +176,14 @@ def interpolate_samples(netG, opt, depth, noise_amp, writer, reals, iter_, fixed
 
 def init_G_exp(opt):
     # generator initialization:
-    netG = Generator_exp(opt).to('cuda:0')
+    netG = Generator_exp(opt).to(opt.device)
     netG.apply(models.weights_init)
     return netG
 # In[30]:
 
 def init_AC(opt, n_classes=None):
     #Auxiliary_classifier initialization:
-    netAC = Auxiliary_classifier(opt, n_classes).to('cuda:0')
+    netAC = Auxiliary_classifier(opt, n_classes).to(opt.device)
     netAC.apply(models.weights_init)
     print(netAC)
     return netAC
