@@ -113,7 +113,7 @@ def imresize_to_shape(im,output_shape,opt):
 
 # In[19]:
 
-def generate_samples_(netG, opt, depth, noise_amp, writer, reals, iter_, n=100):
+def generate_samples(netG, opt, depth, noise_amp, writer, reals, iter_, n=None):
     opt.out_ = generate_dir2save(opt)
     dir2save = '{}/gen_samples_stage_{}'.format(opt.out_, depth)
     reals_shapes = [r.shape for r in reals]
@@ -122,33 +122,8 @@ def generate_samples_(netG, opt, depth, noise_amp, writer, reals, iter_, n=100):
         os.makedirs(dir2save)
     except OSError:
         pass
-    with torch.no_grad():
-        for idx in range(n):
-            noise = sample_random_noise(depth, reals_shapes, opt)
-            sample = netG(noise, reals_shapes, noise_amp)
-            if(len(sample)==1):
-                sample =sample[0]
-            all_images.append(sample)
-            save_image('{}/gen_sample_{}_{}.jpg'.format(dir2save, iter_, idx), sample.detach())
-
-        all_images = torch.cat(all_images, 0)
-        all_images[0] = reals[depth].squeeze()
-        grid = make_grid(all_images, nrow=min(5, n), normalize=True)
-        writer.add_image('gen_images_{}'.format(depth), grid, iter_)
-
-
-# In[20]:
-
-
-def generate_samples(netG, opt, depth, noise_amp, writer, reals, iter_, n=100):
-    opt.out_ = generate_dir2save(opt)
-    dir2save = '{}/gen_samples_stage_{}'.format(opt.out_, depth)
-    reals_shapes = [r.shape for r in reals]
-    all_images = []
-    try:
-        os.makedirs(dir2save)
-    except OSError:
-        pass
+    if(n is None):
+    	n = opt.num_samples
     with torch.no_grad():
         for idx in range(n):
             noise = sample_random_noise(depth, reals_shapes, opt)
@@ -162,30 +137,6 @@ def generate_samples(netG, opt, depth, noise_amp, writer, reals, iter_, n=100):
         writer.add_image('gen_images_{}'.format(depth), grid, iter_)
 
 # In[21]:
-
-
-def generate_samples_AC(netG, opt, depth, writer, reals, iter_, n=100):
-    opt.out_ = generate_dir2save(opt)
-    dir2save = '{}/gen_samples_stage_{}'.format(opt.out_, depth)
-    reals_shapes = [r.shape for r in reals]
-    all_images = []
-    try:
-        os.makedirs(dir2save)
-    except OSError:
-        pass
-    with torch.no_grad():
-        for idx in range(n):
-            noise = sample_random_noise(depth, reals_shapes, opt)
-            sample = netG(noise, reals_shapes)
-            all_images.append(sample)
-            save_image('{}/gen_sample_{}_{}.jpg'.format(dir2save, iter_, idx), sample.detach())
-
-        all_images = torch.cat(all_images, 0)
-        all_images[0] = reals[depth].squeeze()
-        grid = make_grid(all_images, nrow=min(5, n), normalize=True)
-        writer.add_image('gen_images_{}'.format(depth), grid, iter_)
-
-# In[22]:
 
 
 def interpolate_samples(netG, opt, depth, noise_amp, writer, reals, iter_, fixed_noise_1, fixed_noise_2, n=10):
@@ -307,9 +258,6 @@ class convert_yamldict_to_object():
         self.train_stages = dict_['train_stages']
         self.fine_tune = dict_['fine_tune']
         self.model_dir = dict_['model_dir']
-        self.batch_size = dict_['batch_size']
-        self.batch_size_train = dict_['batch_size_train']
-        self.batch_size_test = dict_['batch_size_test']
         self.curr_depth = dict_['curr_depth']
         self.w_amp = dict_['w_amp']
         self.w_noise = dict_['w_noise']
@@ -324,6 +272,7 @@ class convert_yamldict_to_object():
         self.w_amp = dict_['w_amp']
         self.num_imgs = dict_['num_imgs']
         self.dir_name = dict_['dir_name']
+        self.path = dict_['path']
         return
 
 
@@ -1162,9 +1111,8 @@ def train_single_scale_l2_AC_Gen_eff_aug(netAC, netG, reals, fixed_noise, noise_
 
 
 # In[124]:
-#path = './Images/deterministic_faces/p9/'
-path='/media/rajiv/870 DISK II/2021/0-ConSinGAN/Images/pokemon/5/'
-num_imgs=5
+path=opt.path
+num_imgs=opt.num_imgs
 if(len(path)>0):
     reals = []
     temp = np.ndarray([opt.max_size,opt.max_size,3])
@@ -1176,7 +1124,7 @@ if(len(path)>0):
         reals_ = create_reals_pyramid(real, opt)
         reals.append(reals_,)
     reals = convert(reals)
-    opt.num_imgs=len(files)
+    #opt.num_imgs=len(files)
 
 # In[ ]:
 

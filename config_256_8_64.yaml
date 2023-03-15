@@ -30,10 +30,9 @@ alpha: 10 # help='reconstruction loss weight',default=10)
 activation: lrelu #default='lrelu', help="activation function {lrelu, prelu, elu, selu}")
 lrelu_alpha: 0.05 # help='alpha for leaky relu', default=0.05)
 batch_norm: 1 #help='use batch norm in generator', default=0)
-use_cutmix: True
 
 # custom
-num_imgs: 5 # 
+num_imgs: 5 # the number of images in the training directory
 naive_img: None #'naive input image  (harmonization or editing)=""
 gpu: 0 #help='which GPU to use=0
 train_mode: 'generation' # generation=['generation', 'retarget', 'harmonization', 'editing', 'animation'],
@@ -41,18 +40,15 @@ lr_scale: 0.1 #help='scaling of learning rate for lower stages=0.1)
 train_stages: 8 #help='how many stages to use for training=6)
 fine_tune: 0 #'whether to fine tune on a given image=0)
 model_dir: None #'model to be used for fine tuning (harmonization or editing)= functions.post_config(opt)
-batch_size: 64
-batch_size_train: batch_size
-batch_size_test: 16
-curr_depth: 0
+num_samples: 100 # number of samples generated at evaluation step
+curr_depth: 0 # starting stage of training
 w_amp: 0.9
 w_noise: 0.01
 train_init: 3
-num_samples: num_imgs*10
 lambda_sim: 1.0
 temp_sim: 0.05
 lambda_clip: 10.0
-#device: 'cpu'
-device: 'cuda:0'
+device: 'cuda:0' # help='set the training device as 'cpu' or 'cuda:0'
 w_amp: 0.9
-dir_name: 'test'
+dir_name: 'test' # help='name of the directory where training results and checkpoints are saved' 
+path: './Images/pokemon/4_2/' # help='path to the input directory that has the training images'
