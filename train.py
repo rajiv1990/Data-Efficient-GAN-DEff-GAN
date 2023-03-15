@@ -250,7 +250,6 @@ class convert_yamldict_to_object():
         self.activation = dict_['activation']
         self.lrelu_alpha = dict_['lrelu_alpha']
         self.batch_norm = dict_['batch_norm']
-        self.use_cutmix = dict_['use_cutmix']
         self.naive_img = dict_['naive_img']
         self.gpu = dict_['gpu']
         self.train_mode = dict_['train_mode']
