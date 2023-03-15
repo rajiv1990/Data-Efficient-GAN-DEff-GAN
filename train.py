@@ -277,6 +277,9 @@ class convert_yamldict_to_object():
 
 # In[38]:
 opt = convert_yamldict_to_object(dict_)
+cuda_env = torch.cuda.is_available() 
+opt.device = 'cuda:0' if cuda_env else 'cpu'
+opt.not_cuda = 0 if cuda_env else 1
 
 # In[39]:
 
