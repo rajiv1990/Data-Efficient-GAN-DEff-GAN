@@ -1,6 +1,7 @@
 # DEff-GAN
 
-Official implementation of the paper [*"DEff-GAN: Diverse Attribute Transfer for Few-Shot Image Synthesis "* by  Rajiv Kumar and G. Sivakumar](Arxiv: https://arxiv.org/pdf/2302.14533v1.pdf)(http://www.scitepress.org/Papers/2023/117996/117996.pdf).
+Official implementation of the paper [*"DEff-GAN: Diverse Attribute Transfer for Few-Shot Image Synthesis "* by  Rajiv Kumar and G. Sivakumar]
+Arxiv: https://arxiv.org/pdf/2302.14533v1.pdf) Scitepress: https://www.scitepress.org/Papers/2023/117996/117996.pdf).
 # Installation
 - python 3.5 or above 
 - pytorch 1.1.0 or above
