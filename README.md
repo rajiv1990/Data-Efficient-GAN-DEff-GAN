@@ -47,7 +47,7 @@ To train a model more suited for image generation of arbitrary sizes run:
 The folder `User-Studies` contains the raw images we used to conduct our user study.
 
 # Acknowledgements
-Our implementation is based on this [implementation](https://github.com/tohinz/ConSinGAN) of the [ConSinGAN paper](https://openaccess.thecvf.com/content/WACV2021/papers/Hinz_Improved_Techniques_for_Training_Single-Image_GANs_WACV_2021_paper.pdf).
+This code implementation borrows heavily from [implementation](https://github.com/tohinz/ConSinGAN) of the [ConSinGAN paper](https://openaccess.thecvf.com/content/WACV2021/papers/Hinz_Improved_Techniques_for_Training_Single-Image_GANs_WACV_2021_paper.pdf).
 
 # Citation
 If you found this code useful please consider citing:
