@@ -346,15 +346,15 @@ def sample_random_noise(depth, reals_shapes, opt):
     for d in range(depth + 1):
         if d == 0:
             noise.append(generate_noise([opt.nc_im, reals_shapes[d][2], reals_shapes[d][3]],
-                                         device='cuda:0').detach())
+                                         device=opt.device).detach())
         else:
             if opt.train_mode == "generation" or opt.train_mode == "animation":
                 noise.append(generate_noise([opt.nfc, reals_shapes[d][2] + opt.num_layer * 2,
                                              reals_shapes[d][3] + opt.num_layer * 2],
-                                             device='cuda:0').detach())
+                                             device=opt.device).detach())
             else:
                 noise.append(generate_noise([opt.nfc, reals_shapes[d][2], reals_shapes[d][3]],
-                                             device='cuda:0').detach())
+                                             device=opt.device).detach())
     return noise
 
 
@@ -435,16 +435,16 @@ def sample_random_noise_new_(depth, reals_shapes, current, opt, num_samples=1):
     for d in range(depth + 1):
         if d == 0:
             noise.append(generate_noise([opt.nc_im, reals_shapes[d][2], reals_shapes[d][3]], num_samp= num_samples,
-                                         device='cuda:0').detach())
+                                         device=opt.device).detach())
         else:
             if opt.train_mode == "generation" or opt.train_mode == "animation":
                 temp = generate_noise([opt.nfc, reals_shapes[d][2] + opt.num_layer * 2,
                                              reals_shapes[d][3] + opt.num_layer * 2],  num_samp= num_samples,
-                                             device='cuda:0').detach()
+                                             device=opt.device).detach()
                 noise.append(temp)
             else:                                
                 temp= generate_noise([opt.nfc, reals_shapes[d][2], reals_shapes[d][3]], num_samp= num_samples,
-                                             device='cuda:0').detach()
+                                             device=opt.device).detach()
                 noise.append(temp)
     return noise
 
@@ -453,10 +453,10 @@ def sample_rand_noise(depth, reals_shapes, current, opt, num_samples=1):
     for d in range(depth + 1):
         if d == 0:
             noise.append(generate_noise([opt.nc_im, reals_shapes[d][2], reals_shapes[d][3]], num_samp= num_samples,
-                                         device='cuda:0').detach())
+                                         device=opt.device).detach())
     return noise
 
-def calc_gradient_penalty_AC_(netD, real_data, fake_data, LAMBDA, device='cuda:0', num_classes=None):
+def calc_gradient_penalty_AC_(netD, real_data, fake_data, LAMBDA, device=opt.device, num_classes=None):
     MSGGan = False
     if  MSGGan:
         alpha = torch.rand(1, 1)
@@ -494,7 +494,7 @@ def calc_gradient_penalty_AC_(netD, real_data, fake_data, LAMBDA, device='cuda:0
     gradient_penalty = (gradient_penalty_class + gradient_penalty_disc)/2.0 
     return gradient_penalty
 
-def calc_gradient_penalty_AC_backup(netD, real_data, fake_data, LAMBDA, device='cuda:0'):
+def calc_gradient_penalty_AC_backup(netD, real_data, fake_data, LAMBDA, device=opt.device):
     MSGGan = False
     if  MSGGan:
         alpha = torch.rand(1, 1)
@@ -531,7 +531,7 @@ def calc_gradient_penalty_AC_backup(netD, real_data, fake_data, LAMBDA, device='
     gradient_penalty = (gradient_penalty_class + gradient_penalty_disc)/2.0 
     return gradient_penalty
 
-def calc_gradient_penalty_AC(netD, real_data, fake_data, LAMBDA, device='cuda:0'):
+def calc_gradient_penalty_AC(netD, real_data, fake_data, LAMBDA, device=opt.device):
     MSGGan = False
     if  MSGGan:
         alpha = torch.rand(1, 1)
