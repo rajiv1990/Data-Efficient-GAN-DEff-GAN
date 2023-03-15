@@ -280,6 +280,7 @@ opt = convert_yamldict_to_object(dict_)
 cuda_env = torch.cuda.is_available() 
 opt.device = 'cuda:0' if cuda_env else 'cpu'
 opt.not_cuda = 0 if cuda_env else 1
+print(opt.device, 'Not_cuda:' , opt.not_cuda)
 
 # In[39]:
 
@@ -1177,13 +1178,7 @@ for scale_num in range(resume_scale, opt.stop_scale+1):
         opt.niter = int(1000*((opt.train_stages+opt.num_imgs)/2+(scale_num-1)))
     opt.niter = 10
         
-    #if(scale_num>=opt.train_stages-2):
-    if(scale_num>opt.train_stages):
-        print('Stage:2')
-        fixed_noise, noise_amp, generator, d_curr = train_single_scale_ssim_no_ms_v2_ssim_AC__(d_curr, generator, reals, fixed_noise, noise_amp, opt, scale_num, writer)
-    else:
-        print('Stage:1')
-        fixed_noise, noise_amp, generator, d_curr = train_single_scale_l2_AC_Gen_eff_aug(d_curr, generator, reals, fixed_noise, noise_amp, opt, scale_num, writer)    
+    fixed_noise, noise_amp, generator, d_curr = train_single_scale_l2_AC_Gen_eff_aug(d_curr, generator, reals, fixed_noise, noise_amp, opt, scale_num, writer)    
     try:
         torch.save(generator, '%s/G.pth' % (opt.out_))
     except:
