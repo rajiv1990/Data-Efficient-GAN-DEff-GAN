@@ -15,8 +15,7 @@ The code was tested on an environment that can be imported using the environment
 conda env create -f environment.yml
 ```
 However, there are lots of extra packages that may consume more disk space.
-
-**[NEW!]** Our [Colab tutorial](https://colab.research.google.com/github/rajiv1990/Data-Efficient-GAN-DEff-GAN/blob/master/DEff_GAN.ipynb) is released! [![](https://colab.research.google.com/assets/colab-badge.svg)]([](https://colab.research.google.com/github/rajiv1990/Data-Efficient-GAN-DEff-GAN/blob/master/DEff_GAN.ipynb))
+**[NEW!]** Our [Colab tutorial](https://colab.research.google.com/github/rajiv1990/Data-Efficient-GAN-DEff-GAN/blob/master/DEff_GAN.ipynb) is released! [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rajiv1990/Data-Efficient-GAN-DEff-GAN/blob/master/DEff_GAN.ipynb)
 
 # Unconditional Generation
 To train a model with the default parameters from our paper run:
