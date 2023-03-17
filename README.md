@@ -45,11 +45,9 @@ The results will be saved in a folder `Evaluation` in the `model_dir`.
 ### Unconditional Generation (Arbitrary Sizes)
 The default unconditional image generation is geared to also induce diversity at the edges of generated images.
 When generating images of arbitrary sizes (especially larger) this often break the image layout.
-Therefore, we also provide the option where we change the upsampling and noise addition slightly to improve results when we want to use a model to generate images of arbitrary sizes.
-To train a model more suited for image generation of arbitrary sizes run:
 
 # Additional Data
-The folder `User-Studies` contains the raw images we used to conduct our user study.
+The folder `Image` contains the raw images that were used in paper.
 
 # Acknowledgements
 This code implementation borrows heavily from [implementation](https://github.com/tohinz/ConSinGAN) of the [ConSinGAN paper](https://openaccess.thecvf.com/content/WACV2021/papers/Hinz_Improved_Techniques_for_Training_Single-Image_GANs_WACV_2021_paper.pdf). We thank the authors for sharing their code publicly!
