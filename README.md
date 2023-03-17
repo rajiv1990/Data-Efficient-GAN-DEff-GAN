@@ -27,11 +27,9 @@ python train.py
 Training one model should take about 20-25 minutes on an NVIDIA GeForce GTX 1080Ti.
 
 ### Modify Learning Rate Scaling and Number of Trained Stages
-To affect sample diversity and image quality we recomment playing around with the learning rate scaling (default is `0.1`) and the number of trained stages (default is `6`).
+To affect sample diversity and image quality we recomment playing around with the learning rate scaling (default is `0.1`) and the number of trained stages (default is `6` \ recommeded is '8').
 This can be especially helpful if the images are more complex (use a higher learning rate scaling) or you want to train on images with higher resolution (use more stages).
 For example, increasing the learning rate scaling will mean that lower stages are trained with a higher learning rate and can, therefore, learn a more faithful model of the original image.
-For example, observe the difference in generated images of the Colusseum if the model is trained with a learning rate scale of `0.1` or `0.5`:
-
 Training on more stages can help with images that exhibit a large global structure that should stay the same. 
 
 ### Results
