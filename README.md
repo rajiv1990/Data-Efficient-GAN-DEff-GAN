@@ -24,7 +24,7 @@ To train a model with the default parameters from our paper run:
 ```
 python train.py
 ```
-Training one model should take about 20-25 minutes on an NVIDIA GeForce GTX 1080Ti.
+Training one model on image with 128x128 image size and 6 stages should take about 1-2 hours on an NVIDIA GeForce GTX 1080Ti.
 
 ### Modify Learning Rate Scaling and Number of Trained Stages
 To affect sample diversity and image quality we recomment playing around with the learning rate scaling (default is `0.1`) and the number of trained stages (default is `6` \ recommeded is '8').
