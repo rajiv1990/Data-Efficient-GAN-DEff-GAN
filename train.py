@@ -1176,7 +1176,7 @@ for scale_num in range(resume_scale, opt.stop_scale+1):
         opt.niter = int(500*(opt.num_imgs)*((opt.train_stages+opt.num_imgs)/2+(scale_num-1)))
     else:
         opt.niter = int(1000*((opt.train_stages+opt.num_imgs)/2+(scale_num-1)))
-    opt.niter = 10
+    #opt.niter = 10
         
     fixed_noise, noise_amp, generator, d_curr = train_single_scale_l2_AC_Gen_eff_aug(d_curr, generator, reals, fixed_noise, noise_amp, opt, scale_num, writer)    
     try:
